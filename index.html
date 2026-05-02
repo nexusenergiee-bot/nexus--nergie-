@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nexus Énergie — Solutions Solaires</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --green: #2e7d32;
+      --green-light: #43a047;
+      --green-bright: #66bb6a;
+      --grey-dark: #1a1a1a;
+      --grey-mid: #2c2c2c;
+      --grey-soft: #3d3d3d;
+      --grey-text: #9e9e9e;
+      --white: #f5f5f5;
+      --gold: #ffc107;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--grey-dark); color: var(--white); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+    header { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; overflow: hidden; }
+    header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(46,125,50,0.35) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(102,187,106,0.12) 0%, transparent 60%); z-index: 0; }
+    header::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(46,125,50,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(46,125,50,0.07) 1px, transparent 1px); background-size: 50px 50px; animation: gridDrift 20s linear infinite; z-index: 0; }
+    @keyframes gridDrift { 0% { transform: translateY(0); } 100% { transform: translateY(50px); } }
+    .hero-content { position: relative; z-index: 1; }
+    .logo-icon { font-size: 3rem; margin-bottom: 0.5rem; display: block; animation: pulse 3s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px var(--green-bright)); } 50% { transform: scale(1.08); filter: drop-shadow(0 0 20px var(--green-bright)); } }
+    .brand { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 12vw, 7rem); letter-spacing: 4px; line-height: 1; background: linear-gradient(135deg, var(--green-bright), #a5d6a7, var(--white)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: fadeUp 0.8s ease both; }
+    .tagline { font-size: clamp(0.9rem, 3vw, 1.1rem); font-weight: 300; letter-spacing: 5px; text-transform: uppercase; color: var(--green-bright); margin-top: 0.5rem; animation: fadeUp 0.9s 0.15s ease both; }
+    .hero-desc { margin-top: 1.5rem; font-size: 1rem; color: var(--grey-text); max-width: 380px; line-height: 1.7; animation: fadeUp 1s 0.3s ease both; }
+    .hero-cta { margin-top: 2.5rem; display: inline-flex; align-items: center; gap: 0.6rem; background: linear-gradient(135deg, var(--green), var(--green-light)); color: #fff; text-decoration: none; padding: 0.9rem 2rem; border-radius: 50px; font-weight: 600; font-size: 1rem; letter-spacing: 0.5px; box-shadow: 0 0 30px rgba(46,125,50,0.5); transition: transform 0.2s, box-shadow 0.2s; animation: fadeUp 1s 0.45s ease both; }
+    .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 0 50px rgba(102,187,106,0.6); }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--grey-text); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; animation: fadeUp 1s 0.8s ease both; }
+    .scroll-hint span { display: block; width: 1px; height: 40px; background: linear-gradient(to bottom, var(--green-bright), transparent); animation: scrollLine 1.5s ease-in-out infinite; }
+    @keyframes scrollLine { 0% { transform: scaleY(0); transform-origin: top; opacity: 1; } 50% { transform: scaleY(1); transform-origin: top; opacity: 1; } 100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; } }
+    .section-header { text-align: center; padding: 5rem 2rem 3rem; }
+    .section-header h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 6vw, 3.5rem); letter-spacing: 3px; color: var(--white); }
+    .section-header h2 span { color: var(--green-bright); }
+    .section-header p { color: var(--grey-text); margin-top: 0.5rem; font-size: 0.95rem; letter-spacing: 1px; }
+    .divider { width: 60px; height: 3px; background: linear-gradient(to right, var(--green), var(--green-bright)); margin: 1rem auto 0; border-radius: 2px; }
+    .catalogue { padding: 0 1.5rem 6rem; max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .card { background: var(--grey-mid); border-radius: 20px; overflow: hidden; border: 1px solid rgba(102,187,106,0.15); transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; animation: fadeUp 0.8s ease both; }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(46,125,50,0.3); border-color: rgba(102,187,106,0.5); }
+    .card-img { width: 100%; height: 240px; object-fit: cover; display: block; }
+    .card-body { padding: 1.5rem; }
+    .badge { display: inline-block; background: rgba(102,187,106,0.15); color: var(--green-bright); font-size: 0.7rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 50px; border: 1px solid rgba(102,187,106,0.3); margin-bottom: 0.75rem; }
+    .card-title { font-size: 1.2rem; font-weight: 700; line-height: 1.3; color: var(--white); margin-bottom: 0.75rem; }
+    .card-features { list-style: none; margin-bottom: 1.2rem; }
+    .card-features li { font-size: 0.85rem; color: var(--grey-text); padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .card-features li::before { content: '✓'; color: var(--green-bright); font-weight: 700; font-size: 0.8rem; flex-shrink: 0; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+    .price { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 1px; color: var(--gold); }
+    .price-note { font-size: 0.75rem; color: var(--grey-text); }
+    .price-alt { font-size: 0.8rem; color: var(--green-bright); margin-top: 2px; }
+    .btn-wa { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #1b5e20, var(--green)); color: #fff; text-decoration: none; padding: 0.65rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s; white-space: nowrap; }
+    .btn-wa:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(46,125,50,0.5); }
+    .btn-wa svg { width: 18px; height: 18px; fill: #fff; }
+    .avantages { background: var(--grey-mid); border-top: 1px solid rgba(102,187,106,0.1); border-bottom: 1px solid rgba(102,187,106,0.1); padding: 4rem 2rem; }
+    .avantages-grid { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; text-align: center; }
+    .avantage-item { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
+    .avantage-icon { font-size: 2.2rem; filter: drop-shadow(0 0 10px rgba(102,187,106,0.5)); }
+    .avantage-label { font-size: 0.85rem; font-weight: 500; color: var(--grey-text); line-height: 1.4; }
+    footer { text-align: center; padding: 3rem 2rem; background: #111; }
+    .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 3px; color: var(--green-bright); margin-bottom: 0.5rem; }
+    footer p { font-size: 0.8rem; color: var(--grey-text); margin-top: 1rem; }
+    .footer-wa { display: inline-flex; align-items: center; gap: 0.5rem; background: #128C7E; color: #fff; text-decoration: none; padding: 0.7rem 1.5rem; border-radius: 50px; font-size: 0.9rem; font-weight: 600; margin-top: 1rem; transition: opacity 0.2s; }
+    .footer-wa:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="hero-content">
+    <span class="logo-icon">⚡</span>
+    <h1 class="brand">Nexus Énergie</h1>
+    <p class="tagline">Solutions Solaires au Cameroun</p>
+    <p class="hero-desc">Éclairez votre vie avec des solutions d'énergie solaire fiables, économiques et durables.</p>
+    <a class="hero-cta" href="https://wa.me/237677257841?text=Bonjour%20Nexus%20Énergie,%20je%20voudrais%20plus%20d'informations." target="_blank">
+      <svg viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.852L.057 23.5l5.797-1.52A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.869 9.869 0 01-5.031-1.376l-.361-.214-3.44.902.918-3.352-.235-.374A9.867 9.867 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106S21.894 6.58 21.894 12 17.42 21.894 12 21.894z"/></svg>
+      Commander sur WhatsApp
+    </a>
+  </div>
+  <div class="scroll-hint"><span></span>Nos produits</div>
+</header>
+
+<div class="section-header">
+  <h2>Nos <span>Produits</span></h2>
+  <p>Cliquez sur "Commander" pour nous contacter directement</p>
+  <div class="divider"></div>
+</div>
+
+<div class="catalogue">
+  <div class="card">
+    <div style="width:100%;height:240px;background:linear-gradient(135deg,#2c2c2c,#3d3d3d);display:flex;align-items:center;justify-content:center;font-size:5rem">☀️</div>
+    <div class="card-body">
+      <span class="badge">⭐ Bestseller</span>
+      <h3 class="card-title">Kit Solaire Complet 240W</h3>
+      <ul class="card-features">
+        <li>Plaque solaire 20W</li>
+        <li>Batterie 12V / 24Ah</li>
+        <li>Convertisseur 200W / 220V</li>
+        <li>4 ampoules LED incluses</li>
+      </ul>
+      <div class="card-footer">
+        <div><div class="price">50 000 F</div><div class="price-note">Livraison disponible</div></div>
+        <a class="btn-wa" href="https://wa.me/237677257841?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20le%20Kit%20Solaire%20240W%20à%2050%20000%20FCFA." target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.852L.057 23.5l5.797-1.52A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.869 9.869 0 01-5.031-1.376l-.361-.214-3.44.902.918-3.352-.235-.374A9.867 9.867 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106S21.894 6.58 21.894 12 17.42 21.894 12 21.894z"/></svg>
+          Commander
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="width:100%;height:240px;background:linear-gradient(135deg,#2c2c2c,#3d3d3d);display:flex;align-items:center;justify-content:center;font-size:5rem">💡</div>
+    <div class="card-body">
+      <span class="badge">🔥 Populaire</span>
+      <h3 class="card-title">Lampadaire Solaire 300W</h3>
+      <ul class="card-features">
+        <li>Puissance 300W — IP66 waterproof</li>
+        <li>Panneau solaire intégré</li>
+        <li>Télécommande incluse</li>
+        <li>Installation facile</li>
+      </ul>
+      <div class="card-footer">
+        <div><div class="price">25 000 F</div><div class="price-alt">2 pièces = 45 000 F</div></div>
+        <a class="btn-wa" href="https://wa.me/237677257841?text=Bonjour,%20je%20suis%20intéressé(e)%20par%20le%20Lampadaire%20Solaire%20300W%20à%2025%20000%20FCFA." target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.852L.057 23.5l5.797-1.52A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.869 9.869 0 01-5.031-1.376l-.361-.214-3.44.902.918-3.352-.235-.374A9.867 9.867 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106S21.894 6.58 21.894 12 17.42 21.894 12 21.894z"/></svg>
+          Commander
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="avantages">
+  <div class="avantages-grid">
+    <div class="avantage-item"><span class="avantage-icon">⚡</span><span class="avantage-label">Énergie 100% solaire & écologique</span></div>
+    <div class="avantage-item"><span class="avantage-icon">🚚</span><span class="avantage-label">Livraison rapide au Cameroun</span></div>
+    <div class="avantage-item"><span class="avantage-icon">💬</span><span class="avantage-label">Commande directe via WhatsApp</span></div>
+    <div class="avantage-item"><span class="avantage-icon">🛡️</span><span class="avantage-label">Produits garantis & fiables</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">⚡ Nexus Énergie</div>
+  <a class="footer-wa" href="https://wa.me/237677257841" target="_blank">
+    <svg viewBox="0 0 24 24" fill="white" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.852L.057 23.5l5.797-1.52A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.869 9.869 0 01-5.031-1.376l-.361-.214-3.44.902.918-3.352-.235-.374A9.867 9.867 0 012.106 12C2.106 6.58 6.58 2.106 12 2.106S21.894 6.58 21.894 12 17.42 21.894 12 21.894z"/></svg>
+    +237 677 257 841
+  </a>
+  <p>© 2025 Nexus Énergie — Tous droits réservés</p>
+</footer>
+</body>
+</html>
